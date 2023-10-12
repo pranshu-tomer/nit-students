@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIT Students - Home</title>
+    <link rel="icon" href="./Assets/asset15.jpg">
+    <link rel="stylesheet" href="./CSS/home.css">
+    <link rel="stylesheet" href="./mediaQuery/home.css">
+</head>
+<body>
+    <section id="hero-section">
+            <video id="video-background" autoplay muted loop plays-inline>
+                <source src="/Assets/asset4.mp4" type="video/mp4">
+            </video>
+            <nav class="nav-bar flex">
+                <div class="logo">
+                    <a href="#"><img src="/Assets/asset5.png" alt="website logo"></a>
+                </div>
+                <div class="nav-content">
+                    <ul class="flex">
+                        <li><a href="#hero-section">Home</a></li>
+                        <li><a href="#material">Material</a></li>
+                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="btn-con">
+                    <button class="learn-more login">
+                        <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text"><a href="/register">LOG IN</a></span>
+                    </button>
+                </div>      
+            </nav>
+            <nav class="hamburgor-nav">
+                <div class="logo">
+                    <a href="#"><img src="/Assets/asset5.png" alt="website logo"></a>
+                </div>
+                <div class="hamburgor">
+                    <div class="ham-icon" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="menu-links">
+                        <li><a href="#hero-section" onclick="toggleMenu()">Home</a></li>
+                        <li><a href="#material" onclick="toggleMenu()">Material</a></li>
+                        <li><a href="/resources" onclick="toggleMenu()">Resources</a></li>
+                        <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
+                    </div>
+                </div>
+            </nav>
+            <div class="hero-content flex">
+                <div class="text">
+                    <h1>Let's Grow <span>Together</span></h1>
+                    <div class="animation">
+                        <ul class="dynamic">
+                            <li><span>Programing ?</span></li>
+                            <li><span>Java ?</span></li>
+                            <li><span>Coding ?</span></li>
+                            <li><span>Development ?</span></li>
+                        </ul>
+                    </div>
+                    <p><i>Notes And Information For Tertiary</i></p>
+                    <div class="btn-con-responsive">
+                        <button class="learn-more res-log">
+                            <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text res-login">Log in</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <hr>
+    <section id="material">
+        <div class="content flex">
+            <div class="card-container">
+                <div class="flip-card">
+                    <div class="front-skill front"></div>
+                    <div class="back">
+                        <h5>Discover & Master Skills</h5>
+                        <p>Unlock programming, web development, DSA, and more! Elevate your expertise with curated lessons and resources. Learn, grow, and excel with us</p>
+                        <button type="button" class="btn"><a href="/skills" style="color: rgb(148, 205, 227);">Explore ></a></button>
+                    </div>
+                </div>
+                <div class="card-description">
+                    <h3>Skills</h3>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="flip-card">
+                    <div class="front-college front"></div>
+                    <div class="back">
+                        <h5>College Central</h5>
+                        <p>Your academic vault - class notes, question papers, and more! Excel in your studies effortlessly with our invaluable resources.</p>
+                        <button type="button" class="btn"><a href="/college" style="color: rgb(148, 205, 227);">Explore ></a></button>
+                    </div>
+                </div>
+                <div class="card-description">
+                    <h3>College Content</h3>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="flip-card">
+                    <div class="front-debugging front"></div>
+                    <div class="back">
+                        <h5>Code Debugging Community</h5>
+                        <p>Share, Solve, Succeed! Upload your code, get help, and conquer challenges as a student collective!</p>
+                        <button type="button" class="btn"><a href="/debugging" style="color: rgb(148, 205, 227);">Explore ></a></button>
+                    </div>
+                </div>
+                <div class="card-description">
+                    <h3>Debugging/Doubt</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section id="contact">
+        <div class="footer flex">
+            <div class="footer-con">
+                <div class="footer-logo">
+                    <a href="#hero-section"><img src="/Assets/asset5.png" alt=""></a>
+                    <p>Your Gateway to Skills, Knowledge, and Growth.</p>
+                </div>
+            </div>
+            <div class="footer-part">
+                <div class="form-container">
+                    <form action="/feedback" class="feedback-form" id="feed" method="POST">
+                        <label for="feedback">Share your ideas.</label>
+                        <input placeholder="Any Suggestions !!" class="input" name="feedback" type="text" id="feedback">
+                        <div class="btn-container">
+                            <button class="btn submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="join-con flex">
+            <p>Join our learning Community today !</p>
+            <button class="learn-more">
+                <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+                </span>
+                <span class="button-text join-us"><a href="/register">REGISTER</a></span>
+            </button>
+        </div>
+        <div class="message-con">
+            <hr>
+            <div class="message">
+                <p>We're Building Together : Your Voice Matters! As we work tirelessly to create a helpful and attractive website for all students, we value your input and suggestions. Share your ideas to shape the future of this platform. Let's craft an empowering space for learning and growth, hand in hand!</p>
+            </div>
+            <hr>
+        </div>
+        <div class="copy">
+            <p>Copyright &#169; 2023</p>
+            <div class="author">
+                <p>shadow_voltrex</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="./javaScript/home.js"></script>
+</body>
+</html>

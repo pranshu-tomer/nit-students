@@ -1,0 +1,48 @@
+@media screen and (max-width : 900px) {
+    .video-player {
+        margin-left: 0.5rem;
+    }
+
+    .menu {
+        display: flex;
+        left: 0;
+        padding-inline: 1rem;
+        padding-top: 0.5rem;
+    }
+
+    nav {
+        position: relative;
+    }
+
+    #cross {
+        display: inherit;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .hide {
+        display: none;
+    }
+}
+
+/* next breakdown on 600px */
+
+@media screen and (max-width : 600px) {
+    .video-player {
+        overflow: visible;
+        width: 560px;
+    }
+}
+
+@media screen and (max-width : 450px) {
+    .message {
+        display: inherit;
+        padding-block: 30%;
+        margin-inline: 30%;
+    }
+}

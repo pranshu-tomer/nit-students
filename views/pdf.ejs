@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIT Students - College Notes</title>
+    <link rel="icon" href="./Assets/asset15.jpg">
+    <link rel="stylesheet" href="./CSS/pdf.css">
+    <link rel="stylesheet" href="./mediaQuery/pdf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main flex">
+        <div class="sidebar hide">
+            <nav class="flex">
+                <div class="nav-options">
+                    <i class="fa-solid fa-xmark" id="cross"></i>
+                    <i class="fa-solid fa-house"></i>
+                    <a href="/">Home</a>
+                </div>
+            </nav>
+            <div class="library">
+                <% for(i of data) { %>
+                    <div class="video flex <% if(i.id == 1) { %> 
+                        active
+                        <% } %>" 
+                        id="<%=i.id%>">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <h5><%=i.title%></h5>
+                        <p class="link"><%=i.link%></p>
+                        <div class="download">
+                            <a href="https://drive.google.com/uc?export=download&id=<%=i.link.split("/")[5]%>"><i class="fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+                <% } %>
+                <a href="/uploads"><div class="upload-section video flex">
+                    <i class="fa-solid fa-upload"></i>
+                    <h5>Upload Notes</h5>
+                </div></a>
+                <div class="space"></div>
+            </div>
+        </div>
+
+
+        <div class="video-player flex">
+            <div class="menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="title-container flex">
+                <h2 class="playing-title">Introduction</h2>
+                <!-- <a href="">Download PDF</a> -->
+            </div>
+            <div class="video-space flex">
+                <div class="video-container">
+                    <iframe class="video-link" src="https://drive.google.com/file/d/1b5ZjM63H_9xKm6O2DSiyl1G0TrMzzu1W/preview" width="700" height="460" allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./javaScript/pdf.js"></script>
+</body>
+</html>

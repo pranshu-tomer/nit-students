@@ -1,0 +1,84 @@
+@media (max-width : 900px) {
+    .content {
+        width: 85%;
+    }
+}
+
+@media (max-width : 1200px) {
+    .content {
+        height: 45%;
+    }
+}
+
+
+@media (max-width : 600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Logo Design */
+
+    .mobile-logo{
+        display: initial;
+        width: 70%;
+    }
+
+    .mobile-logo img {
+        width: 100%;
+    }
+
+    /* Btn for flip the card */
+
+     .check-box {
+        display: flex;
+        flex-direction: column;
+        padding-block: 10px;
+        gap: 7px;
+        color: white;
+    }
+
+    .btn {
+        padding: 0.5rem;
+        border-radius: 1rem;
+    }
+
+    .main {
+        display: none;
+    }
+
+    .log-page {
+        width: 80%;
+        height: 80%;
+        position: initial;
+        border-radius: 2rem;
+        transform-style: preserve-3d;
+    }
+
+    .flip {
+        box-shadow: 2px 2px 4px rgba(255, 255,255,0.5);
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .content {
+        background: none;
+        width: 80%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        perspective: 600px;
+    }
+}
+
+@media (max-width : 450px) {
+    .content {
+        width: 100%;
+    }
+}

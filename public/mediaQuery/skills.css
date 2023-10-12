@@ -1,0 +1,12 @@
+@media screen and (max-width : 1540px) {
+    body {
+        overflow: visible;
+        height: fit-content;
+    }
+}
+
+@media screen and (max-width : 600px) {
+    .container {
+        height: 1300px;
+    }
+}

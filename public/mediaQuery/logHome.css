@@ -1,0 +1,109 @@
+@media screen and  (max-width : 1200px){
+    .nav-bar {
+        display: none;
+    }
+
+    .hamburgor-nav {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 4%;
+        padding-block: 2%;
+    }
+
+    .hamburgor {
+        display: flex;
+        align-items: center;
+    }
+
+    #material {
+        height: 70vh;
+    }
+
+    .text {
+        padding-top: 50%;
+        padding-left: 30%;
+        color: #F8FCFA;
+    }
+
+    .btn-con-responsive {
+        padding-top: 20px;
+        display: inherit;
+    }
+}
+
+@media screen and  (max-width : 1000px) {
+    #video-background {
+        width: fit-content;
+        height: 110%;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        /* border: 2px black solid; */
+    }
+
+    .text {
+        /* border: 2px green solid; */
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and  (max-width : 900px) {
+    .footer {
+        flex-direction: column;
+        gap: 45px;
+    }
+}
+
+@media screen and  (max-width : 700px) {
+    #material{
+        height: 100vh;
+        padding: 0;
+    }
+
+    #contact {
+        height: 60vh;
+    }
+
+    .message-con {
+        display: none;
+    }
+
+    .content {
+        flex-wrap: wrap;
+        height: 100%;
+        width: 100%;
+        padding-block: 35px;
+    }
+
+    .text h1 {
+        font-size: 35px;
+    }
+
+    button.res-log .res-login {
+        color: white;
+    }
+
+    .copy {
+        margin-left: 43%;
+    }
+
+}
+
+@media screen and  (max-width : 500px) {
+    .copy {
+        margin-left: 41%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    #material {
+        height: 1200px;
+    }
+
+    #contact {
+        height: 600px;
+    }
+}

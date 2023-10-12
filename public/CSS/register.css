@@ -1,0 +1,245 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    
+    font-family: 'Roboto' , sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(/Assets/asset8.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Utility Classes */
+
+.content-arrange {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* padding-inline: 20px; */
+}
+
+.log {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+    justify-content: center;
+}
+
+.log-in-details {
+    padding-block: 25%;
+}
+
+.content {
+    height: 60%;
+    width: 60%;
+    background-color: rgb(150, 150, 245);
+    background-image: url(/Assets/asset1.png);
+    background-size: 300px;
+    position: relative;
+    border-radius: 1rem;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.sign-in-flip {
+    position: absolute;
+    right: 5%;
+}
+
+.log-in-flip {
+    position: absolute;
+    left: 5%;
+}
+
+.logo img{
+    width: 12rem;
+}
+
+.btn {
+    border: 1px solid black;
+}
+
+.btn:hover {
+    box-shadow: 2px 2px 3px black;
+}
+
+.switch {
+    display: flex;
+    justify-content: center;
+}
+
+
+.log-page {
+    height: 110%;
+    width: 50%;
+    background: white;
+    box-shadow: 3px 3px 20px black;
+    border-radius: 2rem;
+    transition: 1500ms;
+    position: absolute;
+    left: 3%;
+    top: -5%;
+}
+
+.log-btn {
+    display: flex;
+    align-items: center;
+}
+
+.right-shift {
+    left: 47%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.gap1 {
+    gap: 20px;
+}
+
+.gap2 {
+    gap: 10px;
+}
+
+.check-box {
+    display: none;
+}
+
+.mobile-logo {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+/* exported material */
+.user-interface {
+    position: relative;
+    margin: 0 0 30px;
+    width: 190px;
+  }
+  
+  .user-interface input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px black solid;
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    color: black;
+  }
+  
+  .user-interface input:focus,
+  .user-interface input:valid {
+    outline: 0;
+    border-bottom-color: rgb(122, 201, 227);
+  }
+  
+  .user-interface label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .user-interface label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: black;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .user-interface input:focus+label span,
+  .user-interface input:valid+label span {
+    color: rgb(122, 201, 227);
+    transform: translateY(-30px);
+  }
+
+  .bt-gap {
+    margin: 0 0 10px;
+  }
+
+  /* btn */
+
+  .button {
+    width: 100px;
+    height: 35px;
+    background: linear-gradient(to top, #00154c, #12376e, #23487f);
+    color: #fff;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  
+  .button span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: top 0.5s;
+  }
+  
+  .button-text-one {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .button-text-two {
+    position: absolute;
+    width: 100%;
+    top: 150%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .button:hover .button-text-one {
+    top: -100%;
+  }
+  
+  .button:hover .button-text-two {
+    top: 50%;
+  }
+
+  /* Error Handling */
+
+  .error {
+    color: red;
+  }
+  
+  .error-input {
+    border: 1px solid red;
+  }
+
+  .backend-error {
+    color: red;
+    margin-top: 5px;
+  }
+
+  
+  

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <link rel="icon" href="./Assets/asset15.jpg">
+    <link rel="stylesheet" href="./CSS/player.css">
+    <link rel="stylesheet" href="./mediaQuery/player.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main flex">
+        <div class="sidebar hide">
+            <nav class="flex">
+                <div class="nav-options">
+                    <i class="fa-solid fa-xmark" id="cross"></i>
+                    <i class="fa-solid fa-house"></i>
+                    <a href="/">Home</a>
+                </div>
+            </nav>
+            <div class="library">
+                <% for(i of data) { %>
+                    <div class="video flex <% if(i.id == 1) { %> 
+                        active
+                        <% } %>" 
+                        id="<%=i.id%>">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <h5><%=i.title%></h5>
+                        <p class="link"><%=i.link%></p>
+                    </div>
+                <% } %>
+                <div class="space"></div>
+            </div>
+        </div>
+
+
+        <div class="video-player flex">
+                <div class="menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="title-container flex">
+                    <h2 class="playing-title">Introduction</h2>
+                </div>
+            <div class="video-space flex">
+                <div class="video-container">
+                    <iframe class="video-link" width="560" height="315" src="https://www.youtube-nocookie.com/embed/yRpLlJmRo2w?si=FAcEhUIkhcwexSDW&amp;controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="rating-container flex">
+                <form action="/ratings" method="POST">
+                    <p>Rate this video : <button class="btn">Submit</button></p>
+                    <input type="text" name="name" class="none" id="name">
+                <div class="rating">
+                    <input value="5" name="rating" id="star5" type="radio" required>
+                    <label for="star5"></label>
+                    <input value="4" name="rating" id="star4" type="radio" required>
+                    <label for="star4"></label>
+                    <input value="3" name="rating" id="star3" type="radio" required>
+                    <label for="star3"></label>
+                    <input value="2" name="rating" id="star2" type="radio" required>
+                    <label for="star2"></label>
+                    <input value="1" name="rating" id="star1" type="radio"  required>
+                    <label for="star1"></label>
+                </div>
+                </form>    
+            </div>
+            <div class="bottom flex">
+                <div class="previous" onclick="previous()"><p>&#60; &#60; &nbsp; Previous</p></div>
+                <div class="next" onclick="next()"><p>Next &nbsp; &#62; &#62;</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="message">
+        <h4>Rotate Your Phone</h4>
+    </div>
+
+    <script src="./javaScript/player.js"></script>  
+</body>
+</html>
