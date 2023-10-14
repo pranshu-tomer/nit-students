@@ -120,7 +120,6 @@ app.get("/", (req,res) => {
 app.post('/new', async (req,res) => {
     try {
         let {name,enrollment,password} = req.body;
-        console.log(password.trim());
         const salt = await bcrypt.genSalt(5);
         const hashedPassword = await bcrypt.hash(password.trim(),salt);
 
