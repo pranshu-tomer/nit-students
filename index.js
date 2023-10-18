@@ -69,7 +69,7 @@ function isAuthenticated(req, res, next) {
 
 
 // Middleware to track visitors and their session duration
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   const visitorId = req.cookies.user_id;
   const currentTime = new Date().getTime();
 
@@ -81,7 +81,8 @@ app.use((req, res, next) => {
   } else {
     const decoded = jwt.verify(visitorId, process.env.JWT_SECRET_KEY);
     const userId = decoded.id;
-    req.visitorId = userId;
+    const exist = await User.findOne({_id : userId});
+    req.visitorId = exist.enrollment;
   }
 
   // Store or update the visitor's last visit timestamp
