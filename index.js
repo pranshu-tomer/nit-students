@@ -1,4 +1,3 @@
-// Set up express
 const express = require("express");
 const app = express();
 
@@ -18,6 +17,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+const {userDetails} = require('./middleware.js');
+
 // setting up dot env
 require('dotenv').config();
 require('./db');
@@ -26,16 +27,14 @@ const Video = require('./models/schema.js');
 require('./init/data');
 
 // For password encryption
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParse = require('cookie-parser');
 app.use(cookieParse());
 
+const {isAuthenticated} = require('./middleware.js');
+
 // Importing User Scehma
 const User = require('./models/user.js');
-const College = require('./models/collegeSchema.js');
-const Feedback = require('./models/feedback.js');
-const Rate = require('./models/ratings.js');
 
 // set path for view ejs files
 const path = require("path");
@@ -46,8 +45,13 @@ app.set("views" , path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use('/uploads', express.static('uploads'));
 
+
 // Encoding body data
 app.use(express.urlencoded({extended : true}));
+
+const userRouter = require('./routes/user.js');
+const featureRouter = require('./routes/feature.js');
+const feedbackRouter = require('./routes/feedback.js');
 
 
 // App is listening
@@ -55,49 +59,7 @@ app.listen(3000 , () => {
     console.log("Server is Listening");
 })
 
-function isAuthenticated(req, res, next) {
-    const token = req.cookies.user_id;
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        const userId = decoded.id;
-        return next();
-      } catch (error) {
-        // return res.render("register.ejs");
-        return res.render("register.ejs");
-      }
-}
-
-
-// Middleware to track visitors and their session duration
-app.use(async (req, res, next) => {
-  const visitorId = req.cookies.user_id;
-  const currentTime = new Date().getTime();
-
-  // If the visitor doesn't have a unique ID, generate one and set a cookie
-  if (!visitorId) {
-    const newVisitorId = 'tempraryPeople'
-    res.cookie('visitorId', newVisitorId);
-    req.visitorId = newVisitorId;
-  } else {
-    const decoded = jwt.verify(visitorId, process.env.JWT_SECRET_KEY);
-    const userId = decoded.id;
-    const exist = await User.findOne({_id : userId});
-    req.visitorId = exist.enrollment;
-  }
-
-  // Store or update the visitor's last visit timestamp
-  const lastVisitTimestamp = req.cookies.lastVisitTimestamp;
-  if (lastVisitTimestamp) {
-    const sessionDuration = currentTime - parseInt(lastVisitTimestamp);
-    console.log(`Visitor ${req.visitorId} spent ${sessionDuration} ms on the site.`);
-  }
-
-  res.cookie('lastVisitTimestamp', currentTime.toString());
-
-  next();
-});
-
-// Making Roots
+app.use(userDetails);
 
 // Home route
 app.get("/", (req,res) => {
@@ -117,114 +79,9 @@ app.get("/", (req,res) => {
         }
 })
 
-// Registering new user route
-app.post('/new', async (req,res) => {
-    try {
-        let {name,enrollment,password} = req.body;
-        const salt = await bcrypt.genSalt(5);
-        const hashedPassword = await bcrypt.hash(password.trim(),salt);
-
-        const newUser = new User({
-            name,
-            enrollment,
-            password : hashedPassword
-        })
-        await newUser.save();
-        res.redirect("/register");
-    } catch(err) {
-        res.status(500).json({message : err.message});
-    }
-})
-
-// Enrollment cheack
-app.post('/check-enrollment', async (req, res) => {
-    const {enrollment} = req.body;
-    // cheacking username existance
-    let existUser = await User.find({enrollment});
-    if(existUser.length){
-        res.status(400).send('Enrollment already exists!');
-    }else {
-        res.status(200).send('Enrollment is available');
-    }
-}); 
-
-
-// login Route
-app.post("/login", async (req,res,next) => {
-    try {
-        let {enrollment , password} = req.body;
-        password = password.trim();
-
-        const exist = await User.findOne({enrollment});
-        // checking password 
-        bcrypt.compare(password, exist.password, (err, result) => {
-            if (err) {
-              console.error('Error comparing passwords:', err);
-              return;
-            }
-            if (result) {
-                // Generating token
-                const token = jwt.sign({id : exist._id}, process.env.JWT_SECRET_KEY, {expiresIn : '12h'});
-                // send token in form of cookies
-                res.cookie('user_id', token , { httpOnly: true });
-                res.redirect("/");
-            } else {
-                res.send("Password is Incorrect");
-            }
-        });
-
-        } catch(err) {
-            next(err);
-        }
-})
-
-// log-in details cheacking
-app.post('/check-log', async (req,res) => {
-    let {enrollment , password} = req.body;
-    password = password.trim();
-
-    const exist = await User.findOne({enrollment});
-    if(!exist){
-        return res.status(400).send('User not exist , Register first.');
-    }
-    bcrypt.compare(password, exist.password, (err, result) => {
-        if (err) {
-            return res.status(400).send('Something Went wrong! Try again later.');
-        }
-        if (result) {
-            res.status(200).send('');
-        } else {
-            res.status(400).send('Password is incorrect !!');
-        }
-    });
-})
-
-// Creating Register And Log in Route
-app.get("/register", (req,res) => {
-    res.render("register.ejs");
-})
-
-// Creating Resources Route
-app.get("/resources", (req,res) => {
-    res.render("resources.ejs");
-})
-
-// Creating Skills Route
-app.get("/skills", (req,res) => {
-    res.render("skills.ejs");
-})
-
-// Java Page route
-app.get("/java",isAuthenticated, async (req,res) => {
-    let data = await Video.find();
-    res.render("player.ejs", {data});
-})
-
-// Creating Skills Route
-app.get("/college",isAuthenticated, async (req,res) => {
-    let data = await College.find();
-    res.render("pdf.ejs",{data});
-})
+app.use('/', userRouter)
+app.use('/', featureRouter)
+app.use('/',feedbackRouter)
 
 // Uploads file route
 app.get("/uploads",isAuthenticated, (req,res) => {
@@ -258,63 +115,6 @@ app.post("/new/data", uploadAnyField, (req, res) => {
 
     res.redirect('/college');
 });
-
-// Creating Skills Route
-app.get("/debugging",isAuthenticated, (req,res) => {
-    res.render("resources.ejs");
-})
-
-// feedback
-app.post("/feedback",isAuthenticated, async (req,res,next) => {
-    let {feedback} = req.body;
-    const token = req.cookies.user_id;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const userId = decoded.id;
-    User.findById(userId)
-        .exec()
-        .then((exist) => {
-        if (exist) {
-            const feed = new Feedback({feedback, username : exist.name});
-            feed.save();
-            res.redirect("/");
-        } else {
-            console.log('User not found');
-        }
-        })
-        .catch((err) => {
-            next(err);
-        });
-})
-
-app.get('/logout', (req,res) => {
-    res.clearCookie('user_id');
-    res.render("home.ejs");
-})
-
-app.post('/ratings', async (req,res) => {
-    let {rating,name} = req.body;
-    const token = req.cookies.user_id;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const userId = decoded.id;
-    User.findById(userId)
-        .exec()
-        .then((exist) => {
-        if (exist) {
-            let rate = new Rate({
-                name,
-                rating,
-                user : exist.enrollment
-            });
-            rate.save();
-            res.redirect('/java');
-        } else {
-            console.log('User not found');
-        }
-        })
-        .catch((err) => {
-            next(err);
-        });
-})
 
 app.use((err,req,res,next) => {
     res.render('error.ejs');
